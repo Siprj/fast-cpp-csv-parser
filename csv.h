@@ -49,6 +49,9 @@
 #include <cerrno>
 #include <istream>
 
+
+#define MAX_FILE_NAME_LENGTH 255
+
 namespace io{
 ////////////////////////////////////////////////////////////////////////////
 //                                 LineReader                             //
@@ -63,10 +66,10 @@ struct base : std::exception{
         return error_message_buffer;
     }
 
-    mutable char error_message_buffer[256];
+    mutable char error_message_buffer[256+MAX_FILE_NAME_LENGTH+1];
 };
 
-const int max_file_name_length = 255;
+const int max_file_name_length = MAX_FILE_NAME_LENGTH;
 
 struct with_file_name{
     with_file_name(){
